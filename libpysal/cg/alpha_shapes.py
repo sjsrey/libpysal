@@ -171,7 +171,7 @@ def get_faces(triangle):
     Example
     -------
     
-    >>> triangle = np.array([3, 1, 4], dtype=int32)
+    >>> triangle = np.array([3, 1, 4], dtype=np.int32)
     >>> faces = get_faces(triangle)
     >>> faces
     array([[3., 1.],
@@ -269,15 +269,7 @@ def nb_mask_faces(mask, faces):
     Example
     -------
 
-    >>> faces = array([[0, 1],
-                       [0, 2],
-                       [1, 2],
-                       [1, 2],
-                       [1, 3],
-                       [1, 4],
-                       [1, 4],
-                       [2, 4],
-                       [3, 4]])
+    >>> faces = array([[0, 1], [0, 2], [1, 2], [1, 2], [1, 3], [1, 4], [1, 4], [2, 4], [3, 4]])
     >>> mask = np.ones((faces.shape[0], ), dtype=bool_)
     >>> masked = nb_mask_faces(mask, faces)
     >>> masked
