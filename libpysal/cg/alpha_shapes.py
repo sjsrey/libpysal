@@ -270,7 +270,7 @@ def nb_mask_faces(mask, faces):
     -------
     >>> import numpy as np
     >>> faces = np.array([[0, 1], [0, 2], [1, 2], [1, 2], [1, 3], [1, 4], [1, 4], [2, 4], [3, 4]])
-    >>> mask = np.ones((faces.shape[0], ), dtype=bool_)
+    >>> mask = np.ones((faces.shape[0], ), dtype=np.bool_)
     >>> masked = nb_mask_faces(mask, faces)
     >>> masked
     array([[0, 1],
