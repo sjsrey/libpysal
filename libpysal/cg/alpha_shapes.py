@@ -225,9 +225,8 @@ def build_faces(faces, triangles_is,
     >>> num_triangles = triangulation.simplices.shape[0]
     >>> num_faces = num_triangles * num_faces_single
     >>> faces = np.zeros((num_faces, 2), dtype=np.int_)
-    >>> mask = np.ones((num_faces,), dtype=np.bool_)       
-    >>> faces = build_faces(faces, triangulation.simplices, 
-                            num_triangles, num_faces_single)
+    >>> mask = np.ones((num_faces,), dtype=np.bool_)
+    >>> faces = build_faces(faces, triangulation.simplices, num_triangles, num_faces_single)
     >>> faces
     array([[3, 1],
            [1, 4],
