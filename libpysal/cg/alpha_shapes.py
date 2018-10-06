@@ -215,11 +215,7 @@ def build_faces(faces, triangles_is,
     Example
     -------
     >>> import scipy.spatial as spat
-    >>> pts = np.array([[0, 1],
-                        [3, 5],
-                        [4, 1],
-                        [6, 7],
-                        [9, 3]])
+    >>> pts = np.array([[0, 1], [3, 5], [4, 1], [6, 7], [9, 3]])
     >>> triangulation = spat.Delaunay(pts)
     >>> triangulation.simplices
     array([[3, 1, 4],
