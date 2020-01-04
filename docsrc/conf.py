@@ -42,19 +42,10 @@ extensions = [#'sphinx_gallery.gen_gallery',
               'sphinx.ext.doctest',
               'sphinx.ext.intersphinx',
               'numpydoc',
-              #'sphinx.ext.napoleon',
               'matplotlib.sphinxext.plot_directive',
               'nbsphinx']
 
 
-
-# sphinx_gallery_conf = {
-#      # path to your examples scripts
-#      'examples_dirs': '../examples',
-#      # path where to save gallery generated examples
-#      'gallery_dirs': 'auto_examples',
-#      'backreferences_dir': False,
-# }
 
 
 # Add any paths that contain templates here, relative to this directory.
@@ -177,7 +168,6 @@ html_theme_options = {
     'bootstrap_version': "3",
 
     'navbar_links': [
-                     #("Gallery", "auto_examples/index"),
                      ("Installation", "installation"),
                      ("Tutorial", "tutorial"),
                      ("API", "api"),
@@ -198,7 +188,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'libpysaldoc'
+htmlhelp_basename = project + "doc"
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -220,13 +210,17 @@ latex_elements = {
     #
     # 'figure_align': 'htbp',
 }
-
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'libpysal.tex', u'libpysal Documentation',
-     u'pysal developers', 'manual'),
+    (
+        master_doc,
+        "%s.tex" % project,
+        u"%s Documentation" % project,
+        u"pysal developers",
+        "manual",
+    )
 ]
 
 
@@ -234,10 +228,9 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, 'libpysal', u'libpysal Documentation',
-     [author], 1)
-]
+man_pages = [(master_doc, "%s" % project, u"%s Documentation" % project, [author], 1)]
+
+
 
 
 # -- Options for Texinfo output -------------------------------------------
@@ -252,14 +245,6 @@ texinfo_documents = [
 ]
 
 # -----------------------------------------------------------------------------
-# Napoleon configuration
-# -----------------------------------------------------------------------------
-# numpydoc_show_class_members = True
-# numpydoc_class_members_toctree = False
-#
-# napoleon_use_ivar = True
-
-# -----------------------------------------------------------------------------
 # Autosummary
 # -----------------------------------------------------------------------------
 
@@ -269,14 +254,17 @@ autosummary_generate = True
 # avoid showing members twice
 numpydoc_show_class_members = False
 numpydoc_use_plots = True
+class_members_toctree = True
+numpydoc_show_inherited_class_members = True
+numpydoc_xref_param_type = True
 
 # automatically document class members
-autodoc_default_options = {
-    'members': True
-}
+autodoc_default_options = {"members": True, "undoc-members": True}
 
 # display the source code for Plot directive
 plot_include_source = True
+
+
 
 def setup(app):
     app.add_stylesheet("pysal-styles.css")
@@ -284,3 +272,44 @@ def setup(app):
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/3.6/': None}
 
+# This is processed by Jinja2 and inserted before each notebook
+nbsphinx_prolog = r"""
+{% set docname = env.doc2path(env.docname, base='docsrc/') %}
+{% set fullpath = env.doc2path(env.docname, base='tree/master/docsrc/') %}
+
+.. only:: html
+
+    .. role:: raw-html(raw)
+        :format: html
+
+    .. nbinfo::
+
+        This page was generated from `{{ docname }}`__.
+        Interactive online version:
+        :raw-html:`<a href="https://mybinder.org/v2/gh/pysal/libpysal/master?filepath={{ docname }}"><img alt="Binder badge" src="https://mybinder.org/badge_logo.svg" style="vertical-align:text-bottom"></a>`
+
+    __ https://github.com/pysal/libpysal/{{ fullpath }}
+
+.. raw:: latex
+
+    \nbsphinxstartnotebook{\scriptsize\noindent\strut
+    \textcolor{gray}{The following section was generated from
+    \sphinxcode{\sphinxupquote{\strut {{ docname | escape_latex }}}} \dotfill}}
+"""
+
+# This is processed by Jinja2 and inserted after each notebook
+nbsphinx_epilog = r"""
+.. raw:: latex
+
+    \nbsphinxstopnotebook{\scriptsize\noindent\strut
+    \textcolor{gray}{\dotfill\ \sphinxcode{\sphinxupquote{\strut
+    {{ env.doc2path(env.docname, base='doc') | escape_latex }}}} ends here.}}
+"""
+
+# List of arguments to be passed to the kernel that executes the notebooks:
+nbsphinx_execute_arguments = [
+    "--InlineBackend.figure_formats={'svg', 'pdf'}",
+    "--InlineBackend.rc={'figure.dpi': 96}",
+]
+
+mathjax_config = {"TeX": {"equationNumbers": {"autoNumber": "AMS", "useLabelIds": True}}, }
