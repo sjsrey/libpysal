@@ -31,7 +31,7 @@
        - shell: bash -l {0}
          run: conda list
        - shell: bash -l {0}
-         run: python -c 'import libpysal; libpysal.examples.fetch_all()'
+         run: python -c 'import libpysal.examples; libpysal.examples.fetch_all()'
        - shell: bash -l {0}
          run: py.test -v libpysal --cov=libpysal --cov-report=xml
        - name: codecov (${{ matrix.os }}, ${{ matrix.environment-file }})
