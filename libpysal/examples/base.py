@@ -217,6 +217,7 @@ class Examples:
 
     def __init__(self):
         self.datasets = {}
+        self.remotes_pulled = False
 
     def add_examples(self, examples):
         """Add examples to the set of datasets available."""

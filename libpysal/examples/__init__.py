@@ -3,21 +3,23 @@
 """
 
 from .base import example_manager
-from .remotes import datasets as remote_datasets
 from .remotes import download as fetch_all
+from .remotes import poll_remotes
 from .builtin import datasets as builtin_datasets
 
 from typing import Union
 
 __all__ = ["get_path", "available", "explain", "fetch_all"]
 
-example_manager.add_examples(remote_datasets)
+
 example_manager.add_examples(builtin_datasets)
 
 
 def available() -> str:
     """List available datasets."""
-
+    if not example_manager.remotes_pulled:
+        example_manager.add_examples(poll_remotes())
+        example_manager.remotes_pulled = True
     return example_manager.available()
 
 

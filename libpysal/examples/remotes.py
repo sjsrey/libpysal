@@ -42,7 +42,6 @@ def poll_remotes():
 
     # Other Remotes
 
-
     # rio
     name = "Rio Grande do Sul"
     description = "Cities of the Brazilian State of Rio Grande do Sul"
@@ -96,12 +95,13 @@ def poll_remotes():
     return datasets
 
 
-datasets = poll_remotes()
+# datasets = poll_remotes()
 
 
-def download(datasets=datasets):
+def download():
     """Download all known remotes."""
 
+    datasets = poll_remotes()
     names = list(datasets.keys())
     names.sort()
     for name in names:
