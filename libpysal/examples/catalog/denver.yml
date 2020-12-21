@@ -1,0 +1,7 @@
+description: ' Demographics and housing in Denver neighborhoods.'
+download_url: https://geodacenter.github.io/data-and-lab//data/denver.zip
+explain_url: https://geodacenter.github.io/data-and-lab//denver/
+k: ' 55'
+n: ' 75'
+name: Denver
+root: Denver

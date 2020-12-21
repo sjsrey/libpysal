@@ -1,0 +1,7 @@
+description: ' Block-level Earnings in NYC (2002-14)'
+download_url: https://geodacenter.github.io/data-and-lab//data/lehd.zip
+explain_url: https://geodacenter.github.io/data-and-lab//LEHD_Data/
+k: ' 70'
+n: ' 108,487'
+name: NYC Earnings
+root: NYC_Earnings

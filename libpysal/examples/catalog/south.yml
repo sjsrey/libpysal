@@ -1,0 +1,7 @@
+description: ' US Southern county homicides 1960-1990'
+download_url: https://geodacenter.github.io/data-and-lab//data/south.zip
+explain_url: https://geodacenter.github.io/data-and-lab//south/
+k: ' 69'
+n: ' 1,412'
+name: South
+root: South

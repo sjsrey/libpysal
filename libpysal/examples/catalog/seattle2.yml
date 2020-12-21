@@ -1,0 +1,8 @@
+description: ' 1998 and 2001 Zip Code Business Patterns (Census Bureau) for Seattle,
+  WA MSA'
+download_url: https://geodacenter.github.io/data-and-lab//data/SeattleMSA2.zip
+explain_url: https://geodacenter.github.io/data-and-lab//seattle2/
+k: ' 59'
+n: ' 145'
+name: Seattle2
+root: Seattle2

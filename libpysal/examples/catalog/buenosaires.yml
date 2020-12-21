@@ -1,0 +1,7 @@
+description: ' Electoral Data for 1999 Argentinean Elections'
+download_url: https://geodacenter.github.io/data-and-lab//data/buenosaires.zip
+explain_url: https://geodacenter.github.io/data-and-lab//buenos-aires_old/
+k: ' 21'
+n: ' 209'
+name: Buenosaires
+root: Buenosaires

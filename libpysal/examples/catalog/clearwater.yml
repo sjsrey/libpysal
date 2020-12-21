@@ -1,0 +1,7 @@
+description: mgwr testing dataset
+download_url: https://github.com/sjsrey/clearwater/archive/master.zip
+explain_url: https://raw.githubusercontent.com/sjsrey/clearwater/master/README.md
+k: 14
+n: 239
+name: clearwater
+root: clearwater

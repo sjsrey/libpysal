@@ -1,0 +1,7 @@
+description: Boston housing and neighborhood data
+download_url: https://geodacenter.github.io/data-and-lab//data/boston.zip
+explain_url: https://geodacenter.github.io/data-and-lab//boston-housing/
+k: '23'
+n: '506'
+name: Bostonhsg
+root: Bostonhsg

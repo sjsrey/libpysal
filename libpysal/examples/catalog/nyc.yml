@@ -1,0 +1,7 @@
+description: ' Demographic and housing data for New York City subboroughs, 2002-09'
+download_url: https://geodacenter.github.io/data-and-lab///data/nyc.zip
+explain_url: https://geodacenter.github.io/data-and-lab//nyc/
+k: ' 34'
+n: ' 55'
+name: NYC
+root: NYC

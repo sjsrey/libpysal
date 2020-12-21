@@ -1,0 +1,7 @@
+description: Atlanta, GA region homicide counts and rates
+download_url: https://geodacenter.github.io/data-and-lab//data/atlanta_hom.zip
+explain_url: https://geodacenter.github.io/data-and-lab//atlanta_old/
+k: '23'
+n: '90'
+name: Atlanta
+root: Atlanta

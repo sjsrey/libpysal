@@ -1,0 +1,7 @@
+description: ' Houston, TX region homicide counts and rates'
+download_url: https://geodacenter.github.io/data-and-lab//data/houston_hom.zip
+explain_url: https://geodacenter.github.io/data-and-lab//houston/
+k: ' 23'
+n: ' 52'
+name: Houston
+root: Houston

@@ -1,0 +1,7 @@
+description: ' 2015 Chicago supermarkets'
+download_url: https://geodacenter.github.io/data-and-lab//data/grocery.zip
+explain_url: https://geodacenter.github.io/data-and-lab//chicago_sup_vars/
+k: ' 7'
+n: ' 148'
+name: Groceries
+root: Groceries

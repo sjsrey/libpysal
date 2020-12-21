@@ -1,0 +1,7 @@
+description: ' Pittsburgh homicide locations'
+download_url: https://geodacenter.github.io/data-and-lab//data/pittsburgh.zip
+explain_url: https://geodacenter.github.io/data-and-lab//pitt93/
+k: ' 8'
+n: ' 143'
+name: Pittsburgh
+root: Pittsburgh

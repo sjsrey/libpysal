@@ -1,0 +1,7 @@
+description: ' Synthetic spiral points'
+download_url: https://geodacenter.github.io/data-and-lab//data/spirals.csv
+explain_url: https://geodacenter.github.io/data-and-lab//spirals/
+k: ' 2'
+n: ' 301'
+name: Spirals
+root: Spirals

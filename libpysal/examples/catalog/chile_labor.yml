@@ -1,0 +1,7 @@
+description: Labor Markets in Chile (1982-2002)
+download_url: https://geodacenter.github.io/data-and-lab//data/flma.zip
+explain_url: https://geodacenter.github.io/data-and-lab//FLMA/
+k: '62'
+n: '141'
+name: Chile Labor
+root: Chile_Labor

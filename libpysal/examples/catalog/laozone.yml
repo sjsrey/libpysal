@@ -1,0 +1,7 @@
+description: ' Ozone measures at monitoring stations in Los Angeles basin'
+download_url: https://geodacenter.github.io/data-and-lab//data/laozone.zip
+explain_url: https://geodacenter.github.io/data-and-lab//ozone/
+k: ' 8'
+n: ' 32'
+name: Laozone
+root: Laozone

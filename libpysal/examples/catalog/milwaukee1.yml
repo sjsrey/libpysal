@@ -1,0 +1,7 @@
+description: ' 2000 Census Tract Data for Milwaukee, WI MSA'
+download_url: https://geodacenter.github.io/data-and-lab//data/MilwaukeeMSA.zip
+explain_url: https://geodacenter.github.io/data-and-lab//milwaukee1/
+k: ' 31'
+n: ' 417'
+name: Milwaukee1
+root: Milwaukee1

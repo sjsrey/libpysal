@@ -1,0 +1,7 @@
+description: ' Columbus neighborhood crime'
+download_url: https://geodacenter.github.io/data-and-lab//data/columbus.zip
+explain_url: https://geodacenter.github.io/data-and-lab//columbus/
+k: ' 20'
+n: ' 49'
+name: Columbus
+root: Columbus

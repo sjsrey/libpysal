@@ -1,0 +1,7 @@
+description: ' 2000 Census Tract Data for Sacramento MSA'
+download_url: https://geodacenter.github.io/data-and-lab//data/sacramento.zip
+explain_url: https://geodacenter.github.io/data-and-lab//sacramento1/
+k: ' 30'
+n: ' 403'
+name: Sacramento1
+root: Sacramento1

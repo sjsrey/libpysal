@@ -1,0 +1,7 @@
+description: Airbnb rentals, socioeconomics, and crime in Chicago
+download_url: https://geodacenter.github.io/data-and-lab//data/airbnb.zip
+explain_url: https://geodacenter.github.io/data-and-lab//airbnb/
+k: '20'
+n: '77'
+name: AirBnB
+root: AirBnB

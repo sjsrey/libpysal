@@ -1,0 +1,7 @@
+description: ' Police expenditures Mississippi counties'
+download_url: https://geodacenter.github.io/data-and-lab//data/police.zip
+explain_url: https://geodacenter.github.io/data-and-lab//police/
+k: ' 21'
+n: ' 82'
+name: Police
+root: Police

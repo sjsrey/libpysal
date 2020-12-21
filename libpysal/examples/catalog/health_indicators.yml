@@ -1,0 +1,7 @@
+description: ' Chicago Health Indicators (2005-11)'
+download_url: https://geodacenter.github.io/data-and-lab//data/healthIndicators.zip
+explain_url: https://geodacenter.github.io/data-and-lab//healthindicators-variables/
+k: ' 31'
+n: ' 77'
+name: Health Indicators
+root: Health_Indicators

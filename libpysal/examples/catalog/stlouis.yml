@@ -1,0 +1,7 @@
+description: ' St Louis region county homicide counts and rates'
+download_url: https://geodacenter.github.io/data-and-lab//data/stlouis.zip
+explain_url: https://geodacenter.github.io/data-and-lab//stlouis/
+k: ' 23'
+n: ' 78'
+name: StLouis
+root: StLouis

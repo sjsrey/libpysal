@@ -1,0 +1,7 @@
+description: ' 2000 Census Tract Data for Seattle, WA MSA and counties'
+download_url: https://geodacenter.github.io/data-and-lab//data/SeattleMSA.zip
+explain_url: https://geodacenter.github.io/data-and-lab//seattle1/
+k: ' 30'
+n: ' 664'
+name: Seattle1
+root: Seattle1

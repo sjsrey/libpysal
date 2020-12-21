@@ -1,0 +1,8 @@
+description: ' July-Dec 2012 crime incidents in San Francisco (points + area) - for
+  CAST'
+download_url: https://geodacenter.github.io/data-and-lab//data/SFCrime_July_Dec2012.zip
+explain_url: https://geodacenter.github.io/data-and-lab//SFcrimes_vars/
+k: ' 13'
+n: ' 3,384'
+name: SanFran Crime
+root: SanFran_Crime

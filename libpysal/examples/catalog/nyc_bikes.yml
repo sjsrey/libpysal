@@ -1,0 +1,7 @@
+description: New York City Bike Trips
+download_url: https://github.com/sjsrey/nyc_bikes/archive/master.zip
+explain_url: https://raw.githubusercontent.com/sjsrey/nyc_bikes/master/README.md
+k: 27
+n: 14042
+name: nyc_bikes
+root: nyc_bikes

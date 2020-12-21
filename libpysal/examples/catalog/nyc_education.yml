@@ -1,0 +1,7 @@
+description: ' NYC Education (2000)'
+download_url: https://geodacenter.github.io/data-and-lab//data/nyc_2000Census.zip
+explain_url: https://geodacenter.github.io/data-and-lab//NYC-Census-2000/
+k: ' 56'
+n: ' 2,216'
+name: NYC Education
+root: NYC_Education

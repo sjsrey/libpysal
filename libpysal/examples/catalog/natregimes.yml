@@ -1,0 +1,7 @@
+description: ' NCOVR with regimes (book/PySAL)'
+download_url: https://geodacenter.github.io/data-and-lab//data/natregimes.zip
+explain_url: https://geodacenter.github.io/data-and-lab//natregimes/
+k: ' 73'
+n: ' 3,085'
+name: Natregimes
+root: Natregimes

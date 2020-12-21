@@ -1,0 +1,7 @@
+description: ' 2014-15 Home Sales in King County, WA'
+download_url: https://geodacenter.github.io/data-and-lab//data/kingcounty.zip
+explain_url: https://geodacenter.github.io/data-and-lab//KingCounty-HouseSales2015/
+k: ' 21'
+n: ' 21,613'
+name: Home Sales
+root: Home_Sales

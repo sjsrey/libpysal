@@ -1,0 +1,7 @@
+description: ' North Carolina county SIDS death counts and rates'
+download_url: https://geodacenter.github.io/data-and-lab//data/sids2.zip
+explain_url: https://geodacenter.github.io/data-and-lab//sids2/
+k: ' 17'
+n: ' 100'
+name: SIDS2
+root: SIDS2

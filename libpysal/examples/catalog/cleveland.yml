@@ -1,0 +1,7 @@
+description: ' 2015 sales prices of homes in Cleveland, OH.'
+download_url: https://geodacenter.github.io/data-and-lab//data/cleveland.zip
+explain_url: https://geodacenter.github.io/data-and-lab//clev_sls_154_core/
+k: ' 9'
+n: ' 205'
+name: Cleveland
+root: Cleveland

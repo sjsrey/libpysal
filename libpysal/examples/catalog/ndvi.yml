@@ -1,0 +1,7 @@
+description: ' Normalized Difference Vegetation Index grid'
+download_url: https://geodacenter.github.io/data-and-lab//data/ndvi.zip
+explain_url: https://geodacenter.github.io/data-and-lab//ndvi/
+k: ' 5'
+n: ' 49'
+name: NDVI
+root: NDVI

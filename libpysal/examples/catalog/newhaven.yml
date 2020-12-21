@@ -1,0 +1,7 @@
+description: Network testing dataset
+download_url: https://github.com/sjsrey/newHaven/archive/master.zip
+explain_url: https://raw.githubusercontent.com/sjsrey/newHaven/master/README.md
+k: 5
+n: 3293
+name: newHaven
+root: newHaven

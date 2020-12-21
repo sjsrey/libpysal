@@ -1,0 +1,7 @@
+description: ' Monthly ozone data, 1997-99'
+download_url: https://geodacenter.github.io/data-and-lab//data/oz9799.zip
+explain_url: https://geodacenter.github.io/data-and-lab//oz96/
+k: ' 78'
+n: ' 30'
+name: Oz9799
+root: Oz9799

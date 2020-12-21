@@ -1,0 +1,7 @@
+description: ' Ohio lung cancer data, 1968, 1978, 1988'
+download_url: https://geodacenter.github.io/data-and-lab//data/ohiolung.zip
+explain_url: https://geodacenter.github.io/data-and-lab//ohiolung/
+k: ' 42'
+n: ' 88'
+name: Ohiolung
+root: Ohiolung

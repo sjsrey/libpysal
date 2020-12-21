@@ -1,0 +1,7 @@
+description: ' Grid with simulated variables'
+download_url: https://geodacenter.github.io/data-and-lab//data/grid100.zip
+explain_url: https://geodacenter.github.io/data-and-lab//grid100/
+k: ' 34'
+n: ' 100'
+name: Grid100
+root: Grid100

@@ -1,0 +1,7 @@
+description: ' Demographics for New York City neighborhoods'
+download_url: https://geodacenter.github.io/data-and-lab//data/nycnhood_acs.zip
+explain_url: https://geodacenter.github.io/data-and-lab//NYC-Nhood-ACS-2008-12/
+k: ' 98'
+n: ' 195'
+name: NYC Neighborhoods
+root: NYC_Neighborhoods

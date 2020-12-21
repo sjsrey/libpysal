@@ -1,0 +1,7 @@
+description: ' US county homicides 1960-1990'
+download_url: https://geodacenter.github.io/data-and-lab//data/ncovr.zip
+explain_url: https://geodacenter.github.io/data-and-lab//ncovr/
+k: ' 69'
+n: 3,085
+name: NCOVR
+root: NCOVR

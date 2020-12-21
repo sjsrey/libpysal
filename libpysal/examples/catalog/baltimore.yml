@@ -1,0 +1,7 @@
+description: Baltimore house sales prices and hedonics
+download_url: https://geodacenter.github.io/data-and-lab//data/baltimore.zip
+explain_url: https://geodacenter.github.io/data-and-lab//baltim/
+k: '17'
+n: '211'
+name: Baltimore
+root: Baltimore

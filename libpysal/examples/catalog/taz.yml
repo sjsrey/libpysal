@@ -1,0 +1,7 @@
+description: Traffic Analysis Zones in So. California
+download_url: https://github.com/sjsrey/taz/archive/master.zip
+explain_url: https://raw.githubusercontent.com/sjsrey/taz/master/README.md
+k: 14
+n: 4109
+name: taz
+root: taz

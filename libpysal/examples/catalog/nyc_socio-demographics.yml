@@ -1,0 +1,7 @@
+description: ' NYC Education + Socio-Demographics'
+download_url: https://geodacenter.github.io/data-and-lab//data/nyctract_acs.zip
+explain_url: https://geodacenter.github.io/data-and-lab//NYC_Tract_ACS2008_12/
+k: ' 113'
+n: ' 2,166'
+name: NYC Socio-Demographics
+root: NYC_Socio-Demographics

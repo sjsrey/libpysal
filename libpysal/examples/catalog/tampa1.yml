@@ -1,0 +1,7 @@
+description: ' 2000 Census Tract Data for Tampa, FL MSA and counties'
+download_url: https://geodacenter.github.io/data-and-lab//data/TampaMSA.zip
+explain_url: https://geodacenter.github.io/data-and-lab//tampa1/
+k: ' 30'
+n: ' 547'
+name: Tampa1
+root: Tampa1

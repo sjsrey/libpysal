@@ -1,0 +1,7 @@
+description: ' Chicago Community Area Population Percent Change for 2000 and 2010'
+download_url: https://geodacenter.github.io/data-and-lab//data/chicago_commpop.zip
+explain_url: https://geodacenter.github.io/data-and-lab//commpop/
+k: ' 8'
+n: ' 77'
+name: Chicago commpop
+root: Chicago_commpop

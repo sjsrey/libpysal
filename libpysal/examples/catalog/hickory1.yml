@@ -1,0 +1,7 @@
+description: ' 2000 Census Tract Data for Hickory, NC MSA and counties'
+download_url: https://geodacenter.github.io/data-and-lab//data/HickoryMSA.zip
+explain_url: https://geodacenter.github.io/data-and-lab//hickory1/
+k: ' 30'
+n: ' 68'
+name: Hickory1
+root: Hickory1

@@ -1,0 +1,8 @@
+description: " Malaria incidence and population (1973, 95, 93 censuses and projections\
+  \ until 2005) \_ \_ \_"
+download_url: https://geodacenter.github.io/data-and-lab//data/malariacolomb.zip
+explain_url: https://geodacenter.github.io/data-and-lab//colomb_malaria/
+k: ' 50'
+n: ' 1,068'
+name: Malaria
+root: Malaria

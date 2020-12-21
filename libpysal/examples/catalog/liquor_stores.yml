@@ -1,0 +1,7 @@
+description: ' 2015 Chicago Liquor Stores'
+download_url: https://geodacenter.github.io/data-and-lab//data/liquor.zip
+explain_url: https://geodacenter.github.io/data-and-lab//liq_chicago/
+k: ' 2'
+n: ' 571'
+name: Liquor Stores
+root: Liquor_Stores

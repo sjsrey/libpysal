@@ -1,0 +1,7 @@
+description: ' 2000 Census Tract Data for Savannah, GA MSA and counties'
+download_url: https://geodacenter.github.io/data-and-lab//data/SavannahMSA.zip
+explain_url: https://geodacenter.github.io/data-and-lab//savannah1/
+k: ' 30'
+n: ' 77'
+name: Savannah1
+root: Savannah1

@@ -1,0 +1,7 @@
+description: ' 2000 Census Tract Data for Orlando, FL MSA and counties'
+download_url: https://geodacenter.github.io/data-and-lab//data/OrlandoMSA.zip
+explain_url: https://geodacenter.github.io/data-and-lab//orlando1/
+k: ' 30'
+n: ' 328'
+name: Orlando1
+root: Orlando1

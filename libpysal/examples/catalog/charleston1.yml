@@ -1,0 +1,7 @@
+description: ' 2000 Census Tract Data for Charleston, SC MSA and counties'
+download_url: https://geodacenter.github.io/data-and-lab//data/CharlestonMSA.zip
+explain_url: https://geodacenter.github.io/data-and-lab//charleston-1_old/
+k: ' 30'
+n: ' 117'
+name: Charleston1
+root: Charleston1

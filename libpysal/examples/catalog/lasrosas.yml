@@ -1,0 +1,8 @@
+description: ' Corn yield, fertilizer and field data for precision agriculture, Argentina,
+  1999'
+download_url: https://geodacenter.github.io/data-and-lab//data/lasrosas.zip
+explain_url: https://geodacenter.github.io/data-and-lab//lasrosas/
+k: ' 34'
+n: ' 1,738'
+name: LasRosas
+root: LasRosas

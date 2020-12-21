@@ -1,0 +1,7 @@
+description: ' Phoenix American Community Survey Data (2010, 5-year averages)'
+download_url: https://geodacenter.github.io/data-and-lab//data/phx2.zip
+explain_url: https://geodacenter.github.io/data-and-lab//phx/
+k: ' 17'
+n: ' 685'
+name: Phoenix ACS
+root: Phoenix_ACS

@@ -1,0 +1,7 @@
+description: ' Moral statistics of France (Guerry, 1833)'
+download_url: https://geodacenter.github.io/data-and-lab//data/guerry.zip
+explain_url: https://geodacenter.github.io/data-and-lab//Guerry/
+k: ' 23'
+n: ' 85'
+name: Guerry
+root: Guerry
