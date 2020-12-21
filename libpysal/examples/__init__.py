@@ -2,13 +2,23 @@
     example datasets as well as functions to fetch larger datasets.
 """
 
-from .base import example_manager
-from .remotes import datasets as remote_datasets
-from .remotes import download as fetch_all
-from .builtin import datasets as builtin_datasets
-
-
 from typing import Union
+from .base import example_manager, Example
+from .builtin import datasets as builtin_datasets
+from .catalog import remotes
+
+remote_datasets = {}
+for remote in remotes:
+    dataset = remotes[remote]
+    example = Example(
+        dataset["name"],
+        dataset["description"],
+        dataset["n"],
+        dataset["k"],
+        dataset["download_url"],
+        dataset["explain_url"],
+    )
+    remote_datasets[dataset["name"]] = example
 
 __all__ = ["get_path", "available", "explain", "fetch_all"]
 
@@ -44,3 +54,23 @@ def get_path(file_name: str) -> str:
         if pth:
             return pth
     print("{} is not a file in any installed dataset.".format(file_name))
+
+
+def download(datasets=remote_datasets):
+    """
+    Download all known remotes
+    """
+
+    names = list(datasets.keys())
+    names.sort()
+    for name in names:
+        print(name)
+        example = datasets[name]
+        try:
+            example.download()
+        except:
+            print("Example not downloaded: {}".format(name))
+
+
+def fetch_all():
+    download()
