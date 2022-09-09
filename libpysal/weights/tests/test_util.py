@@ -103,10 +103,10 @@ class Testutil(unittest.TestCase):
         self.assertEqual(w.neighbors, wn)
         ids = ["id-%i" % i for i in range(len(regimes))]
         w = util.block_weights(regimes, ids=np.array(ids))
-        w0 = {"id-1": 1.0}
+        w0 = {"id-1": 1.0, 'id-2': 1}
         self.assertEqual(w["id-0"], w0)
         w = util.block_weights(regimes, ids=ids)
-        w0 = {"id-1": 1.0}
+        w0 = {"id-1": 1.0, 'id-2': 1.0 }
         self.assertEqual(w["id-0"], w0)
 
     def test_comb(self):

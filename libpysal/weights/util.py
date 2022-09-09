@@ -284,8 +284,16 @@ def block_weights(regimes, ids=None, sparse=False, **kwargs):
     >>> regimes = ['n','n','s','s','e','e','w','w','e']
     >>> n = len(regimes)
     >>> w = block_weights(regimes)
-    >>> w.neighbors == {0: [1], 1: [0], 2: [3], 3: [2], 4: [5, 8], 5: [4, 8], 6: [7], 7: [6], 8: [4, 5]}
-    True
+    >>> w.neighbors
+    {4: [5, 8],
+     5: [4, 8],
+     8: [4, 5],
+     0: [1],
+     1: [0],
+     2: [3],
+     3: [2],
+     6: [7],
+     7: [6]}
     """
     rids = np.unique(regimes)
     neighbors = {}
