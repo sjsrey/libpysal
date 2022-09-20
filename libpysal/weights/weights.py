@@ -1207,6 +1207,9 @@ class W(object):
         else:
             self._shpName = BASENAME(shapefile).split(".")[0]
 
+        if idVariable is not None:
+            warnings.warn("idVariable is deprecated.")
+
         self._varName = idVariable
 
     def plot(

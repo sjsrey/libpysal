@@ -8,6 +8,7 @@ from ._contW_lists import ContiguityWeightsLists
 from .util import get_ids, get_points_array
 from .weights import WSP, W
 from .raster import da2W, da2WSP
+from warnings import warn
 
 try:
     from shapely.geometry import Point as shapely_point
@@ -98,6 +99,7 @@ class Rook(W):
         """
         sparse = kwargs.pop("sparse", False)
         if idVariable is not None:
+            warn("idVariable is deprecated.")
             ids = get_ids(filepath, idVariable)
         else:
             ids = None
@@ -171,10 +173,12 @@ class Rook(W):
             if id_order is True and ((idVariable is not None) or (ids is not None)):
                 # if idVariable is None, we want ids. Otherwise, we want the
                 # idVariable column
+                warn('idVariable is deprecated.')
                 id_order = list(df.get(idVariable, ids))
             else:
                 id_order = df.get(id_order, ids)
         elif idVariable is not None:
+            warn('idVariable is deprecated.')
             ids = df.get(idVariable).tolist()
         elif isinstance(ids, str):
             ids = df.get(ids).tolist()
@@ -324,6 +328,7 @@ class Queen(W):
         """
         sparse = kwargs.pop("sparse", False)
         if idVariable is not None:
+            warn('idVariable is deprecated.')
             ids = get_ids(filepath, idVariable)
         else:
             ids = None
@@ -356,6 +361,32 @@ class Queen(W):
         if sparse:
             w = WSP.from_W(w)
         return w
+
+    @classmethod
+    def from_gal(cls, iterable, sparse=False, **kwargs):
+        """
+        Construct a weights object from a collection of arbitrary polygons. This
+        will cast the polygons to PySAL polygons, then build the W.
+
+        Parameters
+        ----------
+        iterable    : iterable
+                      a collection of of shapes to be cast to PySAL shapes. Must
+                      support iteration. Contents may either be a shapely or PySAL shape.
+        **kw        : keyword arguments
+                      optional arguments for  :class:`pysal.weights.W`
+        See Also
+        ---------
+        :class:`libpysal.weights.weights.W`
+        :class:`libpysal.weights.contiguiyt.Queen`
+        """
+        new_iterable = iter(iterable)
+        w = cls(new_iterable, **kwargs)
+        if sparse:
+            w = WSP.from_W(w)
+        return w
+
+
 
     @classmethod
     def from_dataframe(cls, df, geom_col=None, **kwargs):
@@ -398,6 +429,7 @@ class Queen(W):
             if id_order is True and ((idVariable is not None) or (ids is not None)):
                 # if idVariable is None, we want ids. Otherwise, we want the
                 # idVariable column
+                warn('idVariable is deprecated.')
                 ids = list(df.get(idVariable, ids))
                 id_order = ids
             elif isinstance(id_order, str):
@@ -405,6 +437,7 @@ class Queen(W):
                 id_order = ids
         elif idVariable is not None:
             ids = df.get(idVariable).tolist()
+            warn('idVariable is deprecated.')
         elif isinstance(ids, str):
             ids = df.get(ids).tolist()
         w = cls.from_iterable(

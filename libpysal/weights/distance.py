@@ -12,7 +12,7 @@ from .util import (
     WSP2W,
 )
 import copy
-from warnings import warn as Warn
+from warnings import warn
 from scipy.spatial import distance_matrix
 import scipy.sparse as sp
 import numpy as np
@@ -22,7 +22,7 @@ def knnW(data, k=2, p=2, ids=None, radius=None, distance_metric="euclidean"):
     """
     This is deprecated. Use the pysal.weights.KNN class instead.
     """
-    # Warn('This function is deprecated. Please use pysal.weights.KNN', UserWarning)
+    # warn('This function is deprecated. Please use pysal.weights.KNN', Userwarning)
     return KNN(data, k=k, p=p, ids=ids, radius=radius, distance_metric=distance_metric)
 
 
@@ -344,7 +344,7 @@ class KNN(W):
             data = self.kdtree
             ids = self.id_order
         elif (new_data is None) and (new_ids is not None):
-            Warn("Remapping ids must be done using w.remap_ids")
+            warn("Remapping ids must be done using w.remap_ids")
         if k is None:
             k = self.k
         if p is None:
@@ -585,6 +585,7 @@ class Kernel(W):
         """
         points = get_points_array_from_shapefile(filepath)
         if idVariable is not None:
+            warn("idVariable is deprecated.")
             ids = get_ids(filepath, idVariable)
         else:
             ids = None
@@ -866,6 +867,7 @@ class DistanceBand(W):
         """
         points = get_points_array_from_shapefile(filepath)
         if idVariable is not None:
+            warn('idVariable is deprecated.')
             ids = get_ids(filepath, idVariable)
         else:
             ids = None
