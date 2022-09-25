@@ -16,125 +16,122 @@ from scipy.sparse.csgraph import connected_components
 from . import adjtools
 from ..io.fileio import FileIO as popen
 
+DEPID = 'id_order is deprecated. Do not use.'
+
 __all__ = ["W", "WSP"]
 
 
 class W(object):
-    """
-    Spatial weights class. Class attributes are described by their
-    docstrings. to view, use the ``help`` function.
-
-    Parameters
-    ----------
-
-    neighbors : dict
-        Key is region ID, value is a list of neighbor IDS.
-        For example, ``{'a':['b'],'b':['a','c'],'c':['b']}``.
-    weights : dict
-       Key is region ID, value is a list of edge weights.
-       If not supplied all edge weights are assumed to have a weight of 1.
-       For example, ``{'a':[0.5],'b':[0.5,1.5],'c':[1.5]}``.
-    id_order : list
-       An ordered list of ids, defines the order of observations when
-       iterating over ``W`` if not set, lexicographical ordering is used
-       to iterate and the ``id_order_set`` property will return ``False``.
-       This can be set after creation by setting the ``id_order`` property.
-    silence_warnings : bool
-       By default ``libpysal`` will print a warning if the dataset contains
-       any disconnected components or islands. To silence this warning set this
-       parameter to ``True``.
-    ids : list
-        Values to use for keys of the neighbors and weights ``dict`` objects.
-
-    Attributes
-    ----------
-
-    asymmetries
-    cardinalities
-    component_labels
-    diagW2
-    diagWtW
-    diagWtW_WW
-    histogram
-    id2i
-    id_order
-    id_order_set
-    islands
-    max_neighbors
-    mean_neighbors
-    min_neighbors
-    n
-    n_components
-    neighbor_offsets
-    nonzero
-    pct_nonzero
-    s0
-    s1
-    s2
-    s2array
-    sd
-    sparse
-    trcW2
-    trcWtW
-    trcWtW_WW
-    transform
-
-    Examples
-    --------
-
-    >>> from libpysal.weights import W
-    >>> neighbors = {0: [3, 1], 1: [0, 4, 2], 2: [1, 5], 3: [0, 6, 4], 4: [1, 3, 7, 5], 5: [2, 4, 8], 6: [3, 7], 7: [4, 6, 8], 8: [5, 7]}
-    >>> weights = {0: [1, 1], 1: [1, 1, 1], 2: [1, 1], 3: [1, 1, 1], 4: [1, 1, 1, 1], 5: [1, 1, 1], 6: [1, 1], 7: [1, 1, 1], 8: [1, 1]}
-    >>> w = W(neighbors, weights)
-    >>> "%.3f"%w.pct_nonzero
-    '29.630'
-
-    Read from external `.gal file <https://geodacenter.github.io/workbook/4a_contig_weights/lab4a.html#gal-weights-file>`_.
-
-    >>> import libpysal
-    >>> w = libpysal.io.open(libpysal.examples.get_path("stl.gal")).read()
-    >>> w.n
-    78
-    >>> "%.3f"%w.pct_nonzero
-    '6.542'
-
-    Set weights implicitly.
-
-    >>> neighbors = {0: [3, 1], 1: [0, 4, 2], 2: [1, 5], 3: [0, 6, 4], 4: [1, 3, 7, 5], 5: [2, 4, 8], 6: [3, 7], 7: [4, 6, 8], 8: [5, 7]}
-    >>> w = W(neighbors)
-    >>> round(w.pct_nonzero,3)
-    29.63
-    >>> from libpysal.weights import lat2W
-    >>> w = lat2W(100, 100)
-    >>> w.trcW2
-    39600.0
-    >>> w.trcWtW
-    39600.0
-    >>> w.transform='r'
-    >>> round(w.trcW2, 3)
-    2530.722
-    >>> round(w.trcWtW, 3)
-    2533.667
-
-    Cardinality Histogram:
-
-    >>> w.histogram
-    [(2, 4), (3, 392), (4, 9604)]
-
-    Disconnected observations (islands):
-
-    >>> from libpysal.weights import W
-    >>> w = W({1:[0],0:[1],2:[], 3:[]})
-
-    UserWarning: The weights matrix is not fully connected:
-    There are 3 disconnected components.
-    There are 2 islands with ids: 2, 3.
-
-    """
+    """Spatial Weights."""
 
     def __init__(
-        self, neighbors, weights=None, id_order=None, silence_warnings=False, ids=None
-    ):
+        self, neighbors, weights=None, id_order=None, silence_warnings=False,
+            ids=None):
+        """Spatial weights.
+
+        Parameters
+        ----------
+        neighbors : dict
+            Key is region ID, value is a list of neighbor IDS.
+            For example, ``{'a':['b'],'b':['a','c'],'c':['b']}``.
+        weights : dict
+        Key is region ID, value is a list of edge weights.
+        If not supplied all edge weights are assumed to have a weight of 1.
+        For example, ``{'a':[0.5],'b':[0.5,1.5],'c':[1.5]}``.
+        id_order : list
+        An ordered list of ids, defines the order of observations when
+        iterating over ``W`` if not set, lexicographical ordering is used
+        to iterate and the ``id_order_set`` property will return ``False``.
+        This can be set after creation by setting the ``id_order`` property.
+        silence_warnings : bool
+        By default ``libpysal`` will print a warning if the dataset contains
+        any disconnected components or islands. To silence this warning set this
+        parameter to ``True``.
+        ids : list
+            Values to use for keys of the neighbors and weights ``dict`` objects.
+
+        Attributes
+        ----------
+        asymmetries
+        cardinalities
+        component_labels
+        diagW2
+        diagWtW
+        diagWtW_WW
+        histogram
+        id2i
+        id_order
+        id_order_set
+        islands
+        max_neighbors
+        mean_neighbors
+        min_neighbors
+        n
+        n_components
+        neighbor_offsets
+        nonzero
+        pct_nonzero
+        s0
+        s1
+        s2
+        s2array
+        sd
+        sparse
+        trcW2
+        trcWtW
+        trcWtW_WW
+        transform
+
+        Examples
+        --------
+        >>> from libpysal.weights import W
+        >>> neighbors = {0: [3, 1], 1: [0, 4, 2], 2: [1, 5], 3: [0, 6, 4], 4: [1, 3, 7, 5], 5: [2, 4, 8], 6: [3, 7], 7: [4, 6, 8], 8: [5, 7]}
+        >>> weights = {0: [1, 1], 1: [1, 1, 1], 2: [1, 1], 3: [1, 1, 1], 4: [1, 1, 1, 1], 5: [1, 1, 1], 6: [1, 1], 7: [1, 1, 1], 8: [1, 1]}
+        >>> w = W(neighbors, weights)
+        >>> "%.3f"%w.pct_nonzero
+        '29.630'
+
+        Read from external `.gal file <https://geodacenter.github.io/workbook/4a_contig_weights/lab4a.html#gal-weights-file>`_.
+
+        >>> import libpysal
+        >>> w = libpysal.io.open(libpysal.examples.get_path("stl.gal")).read()
+        >>> w.n
+        78
+        >>> "%.3f"%w.pct_nonzero
+        '6.542'
+
+        Set weights implicitly.
+
+        >>> neighbors = {0: [3, 1], 1: [0, 4, 2], 2: [1, 5], 3: [0, 6, 4], 4: [1, 3, 7, 5], 5: [2, 4, 8], 6: [3, 7], 7: [4, 6, 8], 8: [5, 7]}
+        >>> w = W(neighbors)
+        >>> round(w.pct_nonzero,3)
+        29.63
+        >>> from libpysal.weights import lat2W
+        >>> w = lat2W(100, 100)
+        >>> w.trcW2
+        39600.0
+        >>> w.trcWtW
+        39600.0
+        >>> w.transform='r'
+        >>> round(w.trcW2, 3)
+        2530.722
+        >>> round(w.trcWtW, 3)
+        2533.667
+
+        Cardinality Histogram:
+
+        >>> w.histogram
+        [(2, 4), (3, 392), (4, 9604)]
+
+        Disconnected observations (islands):
+
+        >>> from libpysal.weights import W
+        >>> w = W({1:[0],0:[1],2:[], 3:[]})
+
+        UserWarning: The weights matrix is not fully connected:
+        There are 3 disconnected components.
+        There are 2 islands with ids: 2, 3.
+        """
         self.silence_warnings = silence_warnings
         self.transformations = {}
         self.neighbors = neighbors
@@ -149,6 +146,7 @@ class W(object):
             self._id_order = list(self.neighbors.keys())
             self._id_order_set = False
         else:
+            warnings.warn(DEPID)
             self._id_order = id_order
             self._id_order_set = True
         self._reset()
@@ -176,7 +174,9 @@ class W(object):
 
     def to_file(self, path="", format=None):
         """
-        Write a weights to a file. The format is guessed automatically
+        Write a weights to a file.
+
+        The format is guessed automatically
         from the path, but can be overridden with the format argument.
 
         See libpysal.io.FileIO for more information.
@@ -220,6 +220,7 @@ class W(object):
 
     @classmethod
     def from_shapefile(cls, *args, **kwargs):
+        """Define weights on shapefile geometries."""
         # we could also just "do the right thing," but I think it'd make sense to
         # try and get people to use `Rook.from_shapefile(shapefile)` rather than
         # W.from_shapefile(shapefile, type=`rook`), otherwise we'd need to build
@@ -231,6 +232,7 @@ class W(object):
 
     @classmethod
     def from_WSP(cls, WSP, silence_warnings=True):
+        """Obtain weights from a WSP."""
         return WSP2W(WSP, silence_warnings=silence_warnings)
 
     @classmethod
@@ -242,7 +244,6 @@ class W(object):
 
         Parameters
         ----------
-
         adjlist : pandas.DataFrame
             Adjacency list with a minimum of two columns.
         focal_col : str
@@ -376,7 +377,9 @@ class W(object):
 
     @property
     def sparse(self):
-        """Sparse matrix object. For any matrix manipulations required for w,
+        """Sparse matrix object.
+
+        For any matrix manipulations required for w,
         ``w.sparse`` should be used. This is based on ``scipy.sparse``.
         """
         if "sparse" not in self._cache:
@@ -408,7 +411,6 @@ class W(object):
 
     def _build_sparse(self):
         """Construct the sparse attribute."""
-
         row = []
         col = []
         data = []
@@ -426,7 +428,9 @@ class W(object):
 
     @property
     def id2i(self):
-        """Dictionary where the key is an ID and the value is that ID's
+        """Map id to i.
+
+        Dictionary where the key is an ID and the value is that ID's
         index in ``W.id_order``.
         """
         if "id2i" not in self._cache:
@@ -439,7 +443,7 @@ class W(object):
 
     @property
     def n(self):
-        """Number of units."""
+        """Return number of units."""
         if "n" not in self._cache:
             self._n = len(self.neighbors)
             self._cache["n"] = self._n
@@ -447,7 +451,7 @@ class W(object):
 
     @property
     def s0(self):
-        r"""``s0`` is defined as
+        r"""``s0``.
 
         .. math::
 
@@ -461,7 +465,7 @@ class W(object):
 
     @property
     def s1(self):
-        r"""``s1`` is defined as
+        r"""``s1``.
 
         .. math::
 
@@ -493,7 +497,7 @@ class W(object):
 
     @property
     def s2(self):
-        r"""``s2`` is defined as
+        r"""``s2``.
 
         .. math::
 
@@ -589,7 +593,7 @@ class W(object):
 
     @property
     def cardinalities(self):
-        """Number of neighbors for each observation."""
+        """Count neighbors for each observation."""
         if "cardinalities" not in self._cache:
             c = {}
             for i in self._id_order:
@@ -624,7 +628,7 @@ class W(object):
 
     @property
     def nonzero(self):
-        """Number of nonzero weights."""
+        """Count of nonzero weights."""
         if "nonzero" not in self._cache:
             self._nonzero = self.sparse.nnz
             self._cache["nonzero"] = self._nonzero
@@ -632,7 +636,7 @@ class W(object):
 
     @property
     def sd(self):
-        """Standard deviation of number of neighbors."""
+        """Calculate neighbor cardinality standard deviation."""
         if "sd" not in self._cache:
             self._sd = np.std(list(self.cardinalities.values()))
             self._cache["sd"] = self._sd
@@ -656,7 +660,9 @@ class W(object):
 
     @property
     def histogram(self):
-        """Cardinality histogram as a dictionary where key is the id and
+        """Calculate cardinality histogram.
+
+        A dictionary where key is the id and
         value is the number of neighbors for that unit.
         """
         if "histogram" not in self._cache:
@@ -708,12 +714,10 @@ class W(object):
 
     def remap_ids(self, new_ids):
         """
-        In place modification throughout ``W`` of id values from
-        ``w.id_order`` to ``new_ids`` in all.
+        Remap id values from ``w.id_order`` to ``new_ids``.
 
         Parameters
         ----------
-
         new_ids : list, numpy.ndarray
             Aligned list of new ids to be inserted. Note that first
             element of ``new_ids`` will replace first element of
@@ -722,7 +726,6 @@ class W(object):
 
         Examples
         --------
-
         >>> from libpysal.weights import lat2W
         >>> w = lat2W(3, 3)
         >>> w.id_order
@@ -736,7 +739,6 @@ class W(object):
         >>> w.neighbors['id0']
         ['id3', 'id1']
         """
-
         old_ids = self._id_order
         if len(old_ids) != len(new_ids):
             raise Exception(
@@ -768,27 +770,26 @@ class W(object):
             self._reset()
 
     def __set_id_order(self, ordered_ids):
-        """Set the iteration order in w. ``W`` can be iterated over. On
+        """Set the iteration order in w.
+
+        ``W`` can be iterated over. On
         construction the iteration order is set to the lexicographic order of
         the keys in the ``w.weights`` dictionary. If a specific order
         is required it can be set with this method.
 
         Parameters
         ----------
-
         ordered_ids : sequence
             Identifiers for observations in specified order.
 
         Notes
         -----
-
         The ``ordered_ids`` parameter is checked against the ids implied
         by the keys in ``w.weights``. If they are not equivalent sets an
         exception is raised and the iteration order is not changed.
 
         Examples
         --------
-
         >>> from libpysal.weights import lat2W
         >>> w=lat2W(3,3)
         >>> for i,wi in enumerate(w):
@@ -822,7 +823,6 @@ class W(object):
         8 0
 
         """
-
         if set(self._id_order) == set(ordered_ids):
             self._id_order = ordered_ids
             self._id_order_set = True
@@ -831,7 +831,9 @@ class W(object):
             raise Exception("ordered_ids do not align with W ids")
 
     def __get_id_order(self):
-        """Returns the ids for the observations in the order in which they
+        """Return ordered ids.
+
+        Returns the ids for the observations in the order in which they
         would be encountered if iterating over the weights.
         """
         return self._id_order
@@ -840,7 +842,7 @@ class W(object):
 
     @property
     def id_order_set(self):
-        """Returns ``True`` if user has set ``id_order``, ``False`` if not.
+        """Return ``True`` if user has set ``id_order``, ``False`` if not.
 
         Examples
         --------
@@ -854,6 +856,8 @@ class W(object):
     @property
     def neighbor_offsets(self):
         """
+        Return offset of neighbors.
+
         Given the current ``id_order``, ``neighbor_offsets[id]`` is the
         offsets of the id's neighbors in ``id_order``.
 
@@ -875,7 +879,6 @@ class W(object):
         >>> w.neighbor_offsets['b']
         [2, 1]
         """
-
         if "neighbors_0" not in self._cache:
             self.__neighbors_0 = {}
             id2i = self.id2i
@@ -916,11 +919,10 @@ class W(object):
         set_transform
 
         """
-
         return self._transform
 
     def set_transform(self, value="B"):
-        """Transformations of weights.
+        """Set transformations of weights.
 
         Parameters
         ----------
@@ -936,7 +938,6 @@ class W(object):
 
         Notes
         -----
-
         Transformations are applied only to the value of the weights at
         instantiation. Chaining of transformations cannot be done on a ``W``
         instance.
@@ -1064,14 +1065,17 @@ class W(object):
 
         Examples
         --------
-
         >>> from libpysal.weights import lat2W
         >>> w=lat2W(3,3)
         >>> w.asymmetry()
         []
         >>> w.transform='r'
         >>> w.asymmetry()
-        [(0, 1), (0, 3), (1, 0), (1, 2), (1, 4), (2, 1), (2, 5), (3, 0), (3, 4), (3, 6), (4, 1), (4, 3), (4, 5), (4, 7), (5, 2), (5, 4), (5, 8), (6, 3), (6, 7), (7, 4), (7, 6), (7, 8), (8, 5), (8, 7)]
+        [(0, 1), (0, 3), (1, 0), (1, 2), (1, 4), (2, 1), (2, 5),
+        (3, 0), (3, 4), (3, 6), (4, 1), (4, 3), (4, 5), (4, 7),
+        (5, 2), (5, 4), (5, 8), (6, 3), (6, 7), (7, 4), (7, 6),
+        (7, 8), (8, 5), (8, 7)]
+
         >>> result = w.asymmetry(intrinsic=False)
         >>> result
         []
@@ -1081,7 +1085,6 @@ class W(object):
         >>> w.asymmetry()
         [(0, 1), (1, 0)]
         """
-
         if intrinsic:
             wd = self.sparse.transpose() - self.sparse
         else:
@@ -1099,7 +1102,9 @@ class W(object):
             return ijs
 
     def symmetrize(self, inplace=False):
-        """Construct a symmetric KNN weight. This ensures that the neighbors
+        """Construct a symmetric KNN weight.
+
+        This ensures that the neighbors
         of each focal observation consider the focal observation itself as
         a neighbor. This returns a generic ``W`` object, since the object is no
         longer guaranteed to have ``k`` neighbors for each observation.
@@ -1160,7 +1165,6 @@ class W(object):
 
         Returns
         -------
-
         implicit : libpysal.weights.WSP
             Thin ``W`` class
 
@@ -1201,7 +1205,6 @@ class W(object):
             only the base of the shapefile without extension (``False``).
             Default is ``True``.
         """
-
         if full:
             self._shpName = shapefile
         else:
@@ -1215,7 +1218,9 @@ class W(object):
     def plot(
         self, gdf, indexed_on=None, ax=None, color="k", node_kws=None, edge_kws=None
     ):
-        """Plot spatial weights objects. **Requires** ``matplotlib``, and
+        """Plot spatial weights objects.
+
+        **Requires** ``matplotlib``, and
         implicitly requires a ``geopandas.GeoDataFrame`` as input.
 
         Parameters
@@ -1257,7 +1262,6 @@ class W(object):
 
         Examples
         --------
-
         >>> from libpysal.weights import Queen
         >>> import libpysal as lp
         >>> import geopandas
@@ -1314,46 +1318,43 @@ class W(object):
 
 
 class WSP(object):
-    """Thin ``W`` class for ``spreg``.
-
-    Parameters
-    ----------
-
-    sparse : scipy.sparse.{matrix-type}
-        NxN object from ``scipy.sparse``
-
-    Attributes
-    ----------
-
-    n           : int
-                  description
-    s0          : float
-                  description
-    trcWtW_WW   : float
-                  description
-
-    Examples
-    --------
-
-    From GAL information
-
-    >>> import scipy.sparse
-    >>> from libpysal.weights import WSP
-    >>> rows = [0, 1, 1, 2, 2, 3]
-    >>> cols = [1, 0, 2, 1, 3, 3]
-    >>> weights =  [1, 0.75, 0.25, 0.9, 0.1, 1]
-    >>> sparse = scipy.sparse.csr_matrix((weights, (rows, cols)), shape=(4,4))
-    >>> w = WSP(sparse)
-    >>> w.s0
-    4.0
-    >>> w.trcWtW_WW
-    6.395
-    >>> w.n
-    4
-
-    """
+    """Thin ``W`` class for ``spreg``."""
 
     def __init__(self, sparse, id_order=None, index=None):
+        """Thin ``W`` class for ``spreg``.
+
+        Parameters
+        ----------
+        sparse : scipy.sparse.{matrix-type}
+            NxN object from ``scipy.sparse``
+
+        Attributes
+        ----------
+        n           : int
+                    description
+        s0          : float
+                    description
+        trcWtW_WW   : float
+                    description
+
+        Examples
+        --------
+        From GAL information
+
+        >>> import scipy.sparse
+        >>> from libpysal.weights import WSP
+        >>> rows = [0, 1, 1, 2, 2, 3]
+        >>> cols = [1, 0, 2, 1, 3, 3]
+        >>> weights =  [1, 0.75, 0.25, 0.9, 0.1, 1]
+        >>> sparse = scipy.sparse.csr_matrix((weights, (rows, cols)), shape=(4,4))
+        >>> w = WSP(sparse)
+        >>> w.s0
+        4.0
+        >>> w.trcWtW_WW
+        6.395
+        >>> w.n
+        4
+        """
         if not scipy.sparse.issparse(sparse):
             raise ValueError("must pass a scipy sparse object")
         rows, cols = sparse.shape
@@ -1384,7 +1385,10 @@ class WSP(object):
 
     @property
     def id_order(self):
-        """An ordered list of ids, assumed to match the ordering in ``sparse``."""
+        """Return an ordered list of ids.
+
+        Assumed to match the ordering in ``sparse``.
+        """
         # Temporary solution until the refactoring is finished
         if "id_order" not in self._cache:
             if hasattr(self, "index"):
@@ -1396,7 +1400,7 @@ class WSP(object):
 
     @property
     def s0(self):
-        r"""``s0`` is defined as:
+        r"""``s0`` sum of all weights.
 
         .. math::
 
@@ -1428,7 +1432,7 @@ class WSP(object):
 
     @classmethod
     def from_W(cls, W):
-        """Constructs a ``WSP`` object from the ``W``'s sparse matrix.
+        """Construct a ``WSP`` object from the ``W``'s sparse matrix.
 
         Parameters
         ----------
@@ -1483,7 +1487,6 @@ class WSP(object):
         [0. 1. 0. 0. 0. 1. 0. 0. 0. 0.]
 
         """
-
         indices = list(self.sparse.indices)
         data = list(self.sparse.data)
         indptr = list(self.sparse.indptr)
