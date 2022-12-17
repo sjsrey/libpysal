@@ -2,6 +2,7 @@ import os
 import tempfile
 
 import unittest
+import pytest
 from ..weights import W, WSP
 from .. import util
 from ..util import WSP2W, lat2W
@@ -372,6 +373,10 @@ class TestW(unittest.TestCase):
         self.assertIsInstance(sparse, scipy.sparse._arrays.csc_array)
         sparse = self.w_islands.to_sparse()
         self.assertIsInstance(sparse, scipy.sparse._arrays.coo_array)
+
+    def test_sparse_fmt(self):
+        with pytest.raises(ValueError) as exc_info:
+            sparse = self.w_islands.to_sparse("dog")
 
     def test_from_sparse(self):
         sparse = self.w_islands.to_sparse()

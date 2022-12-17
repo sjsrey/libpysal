@@ -452,7 +452,7 @@ class W(object):
             n = self.n
             return disp[fmt_l]((data, (row, col)), shape=(n, n))
         else:
-            warnings.warn(f"{fmt} not supported.")
+            raise ValueError(f"unsupported sparse format: {fmt}")
 
     @property
     def n_components(self):
