@@ -157,7 +157,7 @@ def gabriel(coordinates, ids=None, bandwidth=numpy.inf, kernel="boxcar"):
         coordinates, ids=ids, valid_geometry_types=_VALID_GEOMETRY_TYPES
     )
 
-    edges, dt = self._voronoi_edges(coordinates)
+    edges, dt = _voronoi_edges(coordinates)
     droplist = _filter_gabriel(
         edges,
         dt.points,
@@ -220,11 +220,12 @@ def relative_neighborhood(coordinates, ids=None, bandwidth=numpy.inf, kernel="bo
         coordinates, ids=ids, valid_geometry_types=_VALID_GEOMETRY_TYPES
     )
 
-    edges, dt = self._voronoi_edges(coordinates)
+    edges, dt = _voronoi_edges(coordinates)
     output, dkmax = _filter_relativehood(edges, dt.points, return_dkmax=False)
 
     head, tail, distance = zip(*output)
-    weight = _kernel_functions[kernel](distance, bandwidth)
+
+    weight = _kernel_functions[kernel](numpy.array(distance), bandwidth)
     return W.from_arrays(head, tail, weight)
 
 
@@ -232,9 +233,7 @@ def voronoi(
     coordinates,
     ids=None,
     clip="extent",
-    contiguity_type="v",
-    bandwidth=numpy.inf,
-    kernel="boxcar",
+    contiguity_type="v"
 ):
     """
     Compute contiguity weights according to a clipped
@@ -269,12 +268,6 @@ def voronoi(
         1. "v" (Default): use vertex_set_contiguity()
         2. "r": use rook() contiguity
         3. "q": use queen() contiguity (not recommended)
-    bandwidth : float (default: None)
-        distance to use in the kernel computation. Should be on the same scale as
-        the input coordinates.
-    kernel : string or callable
-        kernel function to use in order to weight the output graph. See the kernel()
-        function for more details.
 
     Notes
     -----
@@ -424,3 +417,15 @@ def _filter_relativehood(edges, coordinates, return_dkmax=False):
             r.append(dkmax)
 
     return out, r
+
+def _voronoi_edges(coordinates):
+    dt = _Delaunay(coordinates)
+    edges = _edges_from_simplices(dt.simplices)
+    edges = (
+                    pandas.DataFrame(numpy.asarray(list(edges)))
+                    .sort_values([0, 1])
+                    .drop_duplicates()
+                    .values
+
+    )
+    return edges, dt
