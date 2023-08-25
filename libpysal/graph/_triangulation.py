@@ -7,10 +7,10 @@ from scipy import spatial, sparse
 from ._contiguity import _vertex_set_intersection
 from ._kernel import _kernel, _optimize_bandwidth, _kernel_functions
 from ._utils import (
-    _validate_geometry_input, 
-    _build_coincidence_lookup, 
-    _induce_cliques, 
-    _jitter_geoms, 
+    _validate_geometry_input,
+    _build_coincidence_lookup,
+    _induce_cliques,
+    _jitter_geoms,
     _vec_euclidean_distances
     )
 from libpysal.cg import voronoi_frames
@@ -30,7 +30,7 @@ Serge Rey (sjsrey@gmail.com)
 """
 
 # This is in the module, rather than in `utils`, to ensure that it
-# can access `_VALID_GEOMETRY_TYPES` without defining a nested decorator. 
+# can access `_VALID_GEOMETRY_TYPES` without defining a nested decorator.
 def _validate_coincident(triangulator):
     """This is a decorator that validates input for coincident points"""
     @wraps(triangulator)
@@ -49,7 +49,12 @@ def _validate_coincident(triangulator):
                     " `coincident='clique' or consult the documentation about coincident points."
                 )
             elif coincident == "jitter":
-                coordinates, geoms = _jitter_geoms(coordinates, geoms)
+                induced = True # ensure we don't induce coincident points via jitter
+                while induced:
+                    coordinates, geoms = _jitter_geoms(coordinates, geoms)
+                    max_coincident, lut = _build_coincidence_lookup(geoms)
+                    if max_coincident == 0:
+                        induced = False
             elif coincident == "clique":
                 input_coordinates, input_ids, input_geoms = coordinates, ids, geoms
                 coordinates, ids, geoms = _validate_geometry_input(
@@ -60,7 +65,7 @@ def _validate_coincident(triangulator):
                     f"Recieved option `coincident='{coincident}', but only options 'raise','clique','jitter' are suppported."
                 )
         heads_ix, tails_ix = triangulator(coordinates, **kwargs)
-        
+
         heads, tails = ids[heads_ix], ids[tails_ix]
 
         if kernel is None:
@@ -71,10 +76,10 @@ def _validate_coincident(triangulator):
             if bandwidth == "auto":
                 bandwidth = _optimize_bandwidth(sparse_D, kernel)
             _k = _kernel(
-                sparse_D, 
-                metric='precomputed', 
-                kernel=kernel, 
-                bandwidth=bandwidth, 
+                sparse_D,
+                metric='precomputed',
+                kernel=kernel,
+                bandwidth=bandwidth,
                 taper=False
             )[0]
             weights = _k.data
@@ -85,9 +90,9 @@ def _validate_coincident(triangulator):
         )
 
         if (n_coincident > 0) & (coincident == "clique"):
-            # note that the kernel is only used to compute a fill value for the clique. 
+            # note that the kernel is only used to compute a fill value for the clique.
             # in the case of the voronoi weights. Using boxcar with an infinite bandwidth
-            # also gives us the correct fill value for the voronoi weight: 1. 
+            # also gives us the correct fill value for the voronoi weight: 1.
             fill_value = _kernel_functions[kernel](numpy.array([0]), bandwidth).item()
             adjtable = _induce_cliques(adjtable, coincident_lut, fill_value=fill_value)
             # from here, how to ensure ordering?
